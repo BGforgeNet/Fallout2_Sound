@@ -20,11 +20,12 @@ jobs:
           set -xeu -o pipefail
           ./extra/package.sh
 
-      - name: Upload artifacts - dat
+      - name: Upload artifacts
         uses: actions/upload-artifact@v2
         if: "!startsWith(github.ref, 'refs/tags/')"
         with:
           path: translations/*.dat
+          name: sound
 
       - name: Release
         uses: softprops/action-gh-release@v1
