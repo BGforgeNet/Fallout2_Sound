@@ -8,4 +8,4 @@ Currently includes:
   - Russian
 
 ### Installation
-After UPU installation, download the latest release `.dat` and drop it into `mods` directory.
+After UPU installation, download the [latest release](https://github.com/BGforgeNet/Fallout2_Sound/releases/latest) `.dat` and drop it into `mods` directory.
