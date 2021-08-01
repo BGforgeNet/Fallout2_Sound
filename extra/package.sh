@@ -6,16 +6,6 @@ bin_dir="$(realpath extra/bin)"
 dat2a="wine $bin_dir/dat2.exe a -1"
 trans_dir="$(realpath translations)"
 file_list="../file.list"
-short_sha="$(git rev-parse --short HEAD)"
-# defaults, local build or github non-tagged
-version="git$short_sha"
-
-if [[ ! -z "${GITHUB_REF-}" ]]; then # github build
-  if echo "$GITHUB_REF" | grep "refs/tags"; then # tagged
-    version="$(echo $GITHUB_REF | sed 's|refs\/tags\/v||')"
-    version
-  fi
-fi
 
 cd "$trans_dir"
 rm -f file.list
