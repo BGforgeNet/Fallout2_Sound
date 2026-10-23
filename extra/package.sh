@@ -2,18 +2,29 @@
 
 set -xeu -o pipefail
 
-bin_dir="$(realpath extra/bin)"
-dat2a="wine $bin_dir/dat2.exe a -1"
-trans_dir="$(realpath translations)"
-file_list="../file.list"
+DAT3_VERSION="v0.11.1"
+DAT3_URL="https://github.com/BGforgeNet/dat3/releases/download/${DAT3_VERSION}/dat3"
+# zlib level for every .dat: 6 packs in under half the time of 9, for archives about 1% larger.
+DAT3_LEVEL=6
+MOD_NAME="upu"
 
-cd "$trans_dir"
-rm -f file.list
-for lang in $(ls); do
-  cd "$lang"
-  dat="upu_${lang}_sound.dat"
-  # I don't know how to pack recursively
-  find . -type f | sed -e 's|^\.\/||' -e 's|\/|\\|g' | sort > "$file_list" # replace slashes with backslashes
-  $dat2a "../$dat" @"$file_list" 2>&1 | grep -v "wine: Read access denied for device" # wine pollutes the log
-  cd ..
+bin_dir="$(realpath extra/bin)"
+dat3="$bin_dir/dat3"
+trans_dir="$(realpath translations)"
+
+mkdir -p "$bin_dir"
+
+if [[ ! -f "$dat3" ]]; then
+  # Through a temporary name, so an interrupted download is never taken for a complete one.
+  wget -nv -O "$dat3.part" "$DAT3_URL"
+  mv "$dat3.part" "$dat3"
+  chmod +x "$dat3"
+fi
+
+for lang_dir in "$trans_dir"/*/; do
+  lang="$(basename "$lang_dir")"
+  dat="$trans_dir/${MOD_NAME}_${lang}_sound.dat"
+  # dat3 adds to an existing archive, so start from none.
+  rm -f "$dat"
+  "$dat3" a -c "$DAT3_LEVEL" -C "$lang_dir" "$dat" '*'
 done

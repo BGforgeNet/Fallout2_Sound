@@ -1,3 +1,3 @@
 translations/*.dat
-translations/file.list
-
+extra/bin/dat3
+extra/bin/*.part

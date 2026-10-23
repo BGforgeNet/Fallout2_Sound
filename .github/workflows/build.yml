@@ -5,33 +5,28 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install packages
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt -qq update
-          sudo apt-get install -o=Dpkg::Use-Pty=0 -y wine-stable wine32 >/dev/null 2>&1
-          wineboot >/dev/null 2>&1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Package
-        run: |
-          set -xeu -o pipefail
-          ./extra/package.sh
+        run: ./extra/package.sh
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: "!startsWith(github.ref, 'refs/tags/')"
         with:
           path: translations/*.dat
           name: sound
+          compression-level: 0
+          if-no-files-found: error
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             translations/*.dat
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
