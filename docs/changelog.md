@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## Version 1.1
 
 - No clicks in the President's `prs41` and the narrator's `nar_8`.
 - Hakunin's `hak117`: lip sync follows the line.
