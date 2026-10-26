@@ -4,6 +4,7 @@
 
 - No clicks in the President's `prs41` and the narrator's `nar_8`.
 - Hakunin's `hak117`: lip sync follows the line.
+- Sulik's `slk57b`, asked about the village once Torr is missing, says the whole line, not only its last sentence.
 
 ## Version 1.0.1
 
