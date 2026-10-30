@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-- Lip sync files: the sound length in the header is stored in the right byte order. No change in game, which never
-  reads it.
+- Lip sync remade for every line from its sound and its words: the lips close on м, б and п where they are said, the
+  mouth opens with the voice and rests in the pauses.
 
 ## Version 1.1
 
