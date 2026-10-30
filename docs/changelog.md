@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Lip sync files: the sound length in the header is stored in the right byte order. No change in game, which never
+  reads it.
+
 ## Version 1.1
 
 - No clicks in the President's `prs41` and the narrator's `nar_8`.
