@@ -4,6 +4,7 @@
 
 - Lip sync remade for every line from its sound and its words: the lips close on м, б and п where they are said, the
   mouth opens with the voice and rests in the pauses.
+- The sound archive no longer carries 20 stray English text files beside Hakunin's lines.
 
 ## Version 1.1
 
