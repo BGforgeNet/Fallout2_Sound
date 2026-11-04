@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## Version 1.2
 
 - Lip sync remade for every line from its sound and its words: the lips close on м, б and п where they are said, the
   mouth opens with the voice and rests in the pauses.
